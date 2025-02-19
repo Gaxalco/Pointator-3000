@@ -1,0 +1,37 @@
+Enregistrer les données acquises lors du pointage dans un fichier au format csv :
+
+    Exigences
+
+        1 • Cette fonctionnalité sera accessible à partir d’une barre de menu se trouvant en haut de la fenêtre principale. Cette barre contiendra un menu déroulant File avec deux items : "Save" et "Save as".
+
+        2 • L’utilisateur doit pouvoir également accéder à cette fonctionnalité en utilisant les raccourcis clavier "Ctrl+s" et "Ctrl+Shift+s" pour les items respectivement "Save" et "Save as".
+
+        3 • Cliquer sur "Save as" créera obligatoirement un nouveau fichier csv et ouvrira un explorateur de fichier permettant de naviguer dans les répertoires de l’ordinateur alors que l'item "Save" ne créera un nouveau fichier que si aucun fichier csv n'est en cours d'utilisation.
+
+        4 • Le répertoire de départ pour la navigation sera un répertoire par défaut du logiciel : data
+
+        5 • L'utilisateur doit pouvoir mettre à jour un fichier csv en cours d'utilisation
+
+        6 • Si l'écriture du fichier échoue ou si il n'y a pas de données, le système doit afficher un message d’erreur approprié.
+
+        7 • Le logiciel doit demander à l'utilisateur si il veut écraser un fichier du même nom si il en existe un
+
+        8 • Le format du fichier csv sera le suivant : [Numéro de la frame (init 0); deltaTime; x; y; L'échelle; Distance Parcourue (init 0)]. Une ligne sera ajoutée pour chaque frame.
+
+    Tâches
+
+        0 • Créer une fonction capable d'enregistrer les données dans le bon format
+        1 • Ajouter un menu déroulant File
+        2 • Ajouter l'item "Save"
+        3 • Ajouter l'item "Save as"
+        4 • Ajouter le raccourci clavier "Ctrl+s"
+        5 • Ajouter le raccourci clavier "Ctrl+Shift+s"
+        6 • Créer une fonction qui ouvre un explorateur de fichier capable d'enregistrer un fichier
+        7 • Créer une fonction qui vérifie si un fichier est en cours de lecture
+        8 • Créer une fonction capable de mettre à jour le fichier csv en cours d'utilisation
+        9 • Mettre le répertoire data par défaut
+        10 • Ecrire un message d'erreur si il n'y a pas de données
+        11 • Ecrire un message d'erreur si l'écriture des données n'a pas réussi
+        13 • Ecrire un message d'erreur si il n'y a pas assez d'espace libre sur le disque
+        14 • Ecrire une fonction capable de détecter si il existe déjà un fichier du même nom
+        15 • Ouvrir une fenetre demandant à l'utilisateur si il veut remplacer le fichier
