@@ -35,3 +35,13 @@ Enregistrer les données acquises lors du pointage dans un fichier au format csv
         13 • Ecrire un message d'erreur si il n'y a pas assez d'espace libre sur le disque
         14 • Ecrire une fonction capable de détecter si il existe déjà un fichier du même nom
         15 • Ouvrir une fenetre demandant à l'utilisateur si il veut remplacer le fichier
+
+    Limites
+
+        0 <= frame < 100000
+        0 <= deltaTime < 5000ms
+        0 <= Coordonnées <= résolution de la vidéo
+        0 < echelle
+        0 <= Distance < résolution de la vidéo
+
+        0o < taille du fichier <= Reste d'espace du disque
