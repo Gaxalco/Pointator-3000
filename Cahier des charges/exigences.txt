@@ -16,7 +16,7 @@ Enregistrer les données acquises lors du pointage dans un fichier au format csv
 
         7 • Le logiciel doit demander à l'utilisateur si il veut écraser un fichier du même nom si il en existe un
 
-        8 • Le format du fichier csv sera le suivant : [Numéro de la frame (init 0); deltaTime; x; y; L'échelle; Distance Parcourue (init 0)]. Une ligne sera ajoutée pour chaque frame.
+        8 • Le format du fichier csv sera le suivant : [Numéro de la frame (init 0); deltaTime; x; y; L'échelle; Distance Parcourue (init 0); deltaX; deltaY]. Une ligne sera ajoutée pour chaque frame.
 
     Tâches
 
@@ -40,7 +40,7 @@ Enregistrer les données acquises lors du pointage dans un fichier au format csv
 
         0 <= frame < 100000
         0 <= deltaTime < 5000ms
-        0 <= Coordonnées <= résolution de la vidéo
+        0 <= Coordonnées (x, y) <= résolution de la vidéo
         0 < echelle
         0 <= Distance < résolution de la vidéo
 
