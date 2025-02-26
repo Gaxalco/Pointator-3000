@@ -15,14 +15,52 @@ class FileRepo:
     def clear_points(self):
         self.points = []
 
-    def save(self, points):
-        with open(f"{self.path}/points.txt", "w") as f:
+    def validFileName(self, fileName):
+        base, ext = os.path.splitext(fileName)
+        counter = 1
+        newFileName = fileName
+
+        while os.path.exists(os.path.join(self.path, newFileName)):
+            if counter == 1:
+                response = input(f"{newFileName} already exists. Do you want to overwrite it? (y/n): ")
+            if response.lower() == 'y':
+                return newFileName
+            else:
+                newFileName = f"{base}_{counter}{ext}"
+                counter += 1
+
+        return newFileName
+    
+    def check_disk_space(path:str, required_space:int) -> bool:
+
+        """
+        Checks if there is enough disk space available at the given path.
+        Args:
+            path (str): The path to check for disk space.
+            required_space (int): The required space in bytes.
+        Returns:
+            bool: True if there is enough space, False otherwise.
+        """
+
+        statvfs = os.statvfs(path)
+        available_space = statvfs.f_frsize * statvfs.f_bavail
+        return available_space >= required_space
+
+    def save(self, points, fileName="points.txt"):
+
+        required_space = 1024 * 1024 * 10  # 10 MB, adjust as needed
+        if not self.check_disk_space(self.path, required_space):
+            raise OSError("Not enough disk space to save the file.")
+        
+        fileName = self.validFileName(fileName)    
+        
+        with open(f"{self.path}/{fileName}", "w") as f:
             f.write(f"1, 0, {points[0].get_x()}, {points[0].get_y()}, 0, 0\n")
             for i in range(1, len(points)):
                 point = points[i]
                 numFrame = i
-                deltaTime = i - (i-1)
-                scale = 1
+                deltaTime = i - (i-1)           # TODO
+                scale = 1                       # TODO
                 deltaDist = sqrt((points[i].get_x() - points[i-1].get_x())**2 + (points[i].get_y() - points[i-1].get_y())**2)
                 deltaX = sqrt((points[i].get_x() - points[i-1].get_x())**2)
                 deltaY = sqrt((points[i].get_y() - points[i-1].get_y())**2)
@@ -31,6 +69,8 @@ class FileRepo:
                     raise ValueError("numFrame must be non-negative")
                 if deltaTime < 0:
                     raise ValueError("deltaTime must be non-negative")
+                if deltaTime > 5000:
+                    raise ValueError("deltaTime must be less than 5000ms")
                 if scale < 0:
                     raise ValueError("Scale must be non-negative")
                 if deltaDist < 0:
