@@ -7,15 +7,43 @@ class FileRepo:
         self.path = os.path.join(os.path.dirname(__file__), "../data")
 
     def add_point(self, point):
+
+        """
+        Adds a point to the list of points.
+        Args:
+            point (Point): The point to add.
+        """
+        
         self.points.append(point)
 
     def get_points(self):
+
+        """
+        Returns the list of points.
+        Returns:
+            list: The list of points.
+        """
+
         return self.points
 
     def clear_points(self):
+
+        """
+        Clears the list of points.
+        """
+        
         self.points = []
 
-    def validFileName(self, fileName):
+    def validFileName(self, fileName) -> str:
+
+        """
+        Checks if the file name already exists in the specified path.
+        Args:
+            fileName (str): The name of the file to check.
+        Returns:
+            str: A valid file name that does not already exist in the path.
+        """
+
         base, ext = os.path.splitext(fileName)
         counter = 1
         newFileName = fileName
@@ -31,7 +59,7 @@ class FileRepo:
 
         return newFileName
     
-    def check_disk_space(path:str, required_space:int) -> bool:
+    def check_disk_space(self, path:str, required_space:int) -> bool:
 
         """
         Checks if there is enough disk space available at the given path.
@@ -48,9 +76,18 @@ class FileRepo:
 
     def save(self, points, fileName="points.txt"):
 
-        required_space = 1024 * 1024 * 10  # 10 MB, adjust as needed
+        """
+        Saves the points to a CSV file in a specific format.
+        Args:
+            points (list): List of Point objects to save.
+            fileName (str): The name of the file to save the points to.
+        """
+
+        # Estimate required space based on the number of points
+        # Assuming each point entry in the file takes approximately 100 bytes
+        required_space = len(points) * 100
         if not self.check_disk_space(self.path, required_space):
-            raise OSError("Not enough disk space to save the file.")
+            raise OSError("Not enough disk space available")
         
         fileName = self.validFileName(fileName)    
         
@@ -82,4 +119,3 @@ class FileRepo:
 
                 f.write(f"{numFrame}, {deltaTime}, {point.get_x()}, {point.get_y()}, {scale}, {deltaDist}, {deltaX}, {deltaY}\n")
         self.clear_points()
-        return True

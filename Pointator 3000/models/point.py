@@ -33,15 +33,42 @@ class Point:
         return f"Point({self.x}, {self.y})"
     
     def get(self):
+
+        """
+        Returns the coordinates of the point as a tuple.
+        Returns:
+            tuple: A tuple containing the x-coordinate and y-coordinate of the point.
+        """
+        
         return self.x, self.y
+    
     def set(self, x, y):
+
+        """
+        Sets the coordinates of the point.
+        Args:
+            x (int): The new x-coordinate of the point.
+            y (int): The new y-coordinate of the point.
+        Raises:
+            ValueError: If the x-coordinate or y-coordinate is negative.
+            ValueError: If the x-coordinate or y-coordinate is greater than the video resolution.
+        """
+
         if x < 0 or y < 0:
             raise ValueError("Coordinates must be non-negative")
         self.x = x
         self.y = y
 
     def get_x(self):
+
+        """
+        Returns the x-coordinate of the point.
+        Returns:
+            int: The x-coordinate of the point.
+        """
+
         return self.x
+    
     def get_y(self):
 
         """
@@ -49,7 +76,7 @@ class Point:
         Returns:
             int: The y-coordinate of the point.
         """
-        
+
         return self.y
     
     def set_x(self, x):
