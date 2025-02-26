@@ -1,6 +1,6 @@
 import unittest
-from filerepo import FileRepo
-from point import Point
+from ..src.models.filerepo import FileRepo
+from ..src.models.point import Point
 from random import randint
 import os
 import tempfile

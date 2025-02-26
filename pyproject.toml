@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Pointator 3000"
+version = "0.1.0"
+description = "A Python application to record 2D points and export CSV files with computed metrics."
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+
+[project.urls]
+"Homepage" = "https://example.com/pointator3000"
+"Repository" = "https://github.com/yourusername/pointator3000"
+"Documentation" = "https://example.com/pointator3000/docs"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--maxfail=1 --disable-warnings -q"
+testpaths = [
+    "tests",
+    "Pointator 3000/models"
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py37"]

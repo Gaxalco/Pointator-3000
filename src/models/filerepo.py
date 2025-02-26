@@ -1,10 +1,11 @@
 import os
 from math import *
+from point import Point
 
 class FileRepo:
     def __init__(self):
         self.points = []
-        self.path = os.path.join(os.path.dirname(__file__), "../data")
+        self.path = os.path.join(os.path.dirname(__file__), "../../resources/data")
 
     def add_point(self, point):
 
@@ -13,7 +14,7 @@ class FileRepo:
         Args:
             point (Point): The point to add.
         """
-        
+
         self.points.append(point)
 
     def get_points(self):
@@ -73,6 +74,24 @@ class FileRepo:
         statvfs = os.statvfs(path)
         available_space = statvfs.f_frsize * statvfs.f_bavail
         return available_space >= required_space
+    
+    def load(self, fileName="points.txt"):
+
+        """
+        Loads points from a CSV file.
+        Args:
+            fileName (str): The name of the file to load points from.
+        Returns:
+            list: A list of Point objects loaded from the file.
+        """
+
+        points = []
+        with open(f"{self.path}/{fileName}", "r") as f:
+            lines = f.readlines()
+            for line in lines:
+                x, y = map(int, line.strip().split(","))
+                points.append(Point(x, y))
+        return points
 
     def save(self, points, fileName="points.txt"):
 
